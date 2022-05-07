@@ -1,0 +1,33 @@
+<div class="loading" *ngIf="!tareas">
+   Cargando....
+</div>
+<div class="col-md-12" *ngIf="tareas">
+    <h2>{{title}}</h2>
+
+    <nz-table #basicTable [nzData]="tareas">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareas">
+            <td>{{tarea.Nombre}}</td>
+            <td><a [routerLink]="['/tareas', tarea.Estado]">{{tarea.Estado}}</a> </td>
+            <td>{{tarea.created_at}}</td>
+            <td>{{tarea.updated_at}}</td>
+            <td>
+              <a [routerLink]="['editar-tarea', tarea.id]" class="btn btn-warning">Editar 一 {{tarea.Nombre}}</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="deleteTarea(tarea.id)" class="btn btn-danger" >Borrar</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    
+</div>

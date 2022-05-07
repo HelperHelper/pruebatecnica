@@ -1,0 +1,56 @@
+<div class="col-md-4 offset-md-4" *ngIf="page_title">
+    <h2>{{page_title}}</h2>
+
+    <div class="alert alert-success" *ngIf="status_tarea == 'success'">
+        La tarea se ha registrado correctamente,
+    </div>
+    <div class="alert alert-danger" *ngIf="status_tarea == 'error'">
+        La Tarea no se ha guardado correctamente, intentalo de nuevo!!
+    </div>
+
+    <form #tareaNew="ngForm" (ngSubmit)="onSubmit(tareaNew)" class="col-md-5" *ngIf="tarea">
+
+        <p>
+            <label for="Nombre">Nombre</label>
+            <input type="text" name="Nombre" #Nombre="ngModel" [(ngModel)]="tarea.Nombre" placeholder="Nombre" class="form-control" class="form-control"
+            autofocus required/>
+            <span *ngIf="!Nombre.valid && Nombre.touched">
+                EL Nombre no es valido
+            </span>
+        </p>
+        <p>
+            <label for="Nombre">Estado</label>
+            <select class="form-select" #Estado="ngModel" [(ngModel)]="tarea.Estado" name="Estado" id="estado" aria-label="Default select example" [disabled]="!editable" required>
+              <!--  <option selected>Seleccione Estado</option> -->
+                <option  value="INICIADA">INICIADA</option>
+                <option value="EN PROCESO">EN PROCESO</option>
+                <option value="CANCELADA">CANCELADA</option>
+                <option value="COMPLETADA">COMPLETADA</option>
+              </select>
+            <span *ngIf="!Estado.valid && Estado.touched">
+                EL Estado no es valido
+            </span>
+           
+        </p>
+        <p>
+            <label for="fecha">Fecha Inicio</label>
+            <input type="date" name="FechaInicio" #FechaInicio="ngModel" [(ngModel)]="tarea.created_at" placeholder="FechaInicio" class="form-control" class="form-control"
+            autofocus required/>
+            <span *ngIf="!FechaInicio.valid && FechaInicio.touched">
+                la Fecha de Inicio no es valida
+            </span>
+        </p>
+        <p>
+            <label for="fechafin">Fecha Fin</label>
+            <input type="date" name="FechaFin" #FechaFin="ngModel" [(ngModel)]="tarea.updated_at" placeholder="FechaFin" class="form-control" class="form-control"
+            autofocus required/>
+            <span *ngIf="!FechaFin.valid && FechaFin.touched">
+                la Fecha de Fin no es valida
+            </span>
+        </p>
+
+            <!-- Boton -->
+            <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!tareaNew.form.valid"/>
+
+    </form>
+ </div>   

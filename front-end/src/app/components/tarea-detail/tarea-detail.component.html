@@ -1,0 +1,28 @@
+<div class="loading" *ngIf="!tareas">
+    Cargando....
+ </div>
+ <div class="col-md-12" *ngIf="tareas">
+     <h2>{{title}}</h2>
+   
+     <nz-table #basicTable [nzData]="tareas">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareas">
+            <td>{{tarea.Nombre}}</td>
+            <td>{{tarea.Estado}}</td>
+            <td>{{tarea.created_at}}</td>
+            <td>{{tarea.updated_at}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    
+ 
+     
+ </div>

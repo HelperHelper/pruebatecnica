@@ -1,0 +1,88 @@
+<div class="col-md-4 offset-md-4">
+
+    <h2>{{title}}</h2>
+    
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        El registro se ha completado correctamente, <a [routerLink]="['/login']">
+            identificate aquí</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        El registro no se ha completado correctamente
+    </div>
+ 
+     <div class="card">
+         <div class="card-body">
+             <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+              
+                <div class="form-group">
+                    <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="Email" class="form-control" autofocus required>
+                </div>
+                <p>
+                    <span *ngIf="!email.valid && email.touched">
+                        EL Email es Requerido
+                    </span>
+                </p>
+                
+                
+               <div class="form-group">
+                   <input type="text" name="Nombre" #Nombre="ngModel" [(ngModel)]="user.Nombre" placeholder="Nombre" class="form-control" autofocus required>
+               </div>
+               <p>
+                   <span *ngIf="!Nombre.valid && Nombre.touched">
+                    EL Nombre es Requerido
+                   </span>
+               </p>
+                <div class="form-group">
+                <input type="text" name="Usuario" #Usuario="ngModel" [(ngModel)]="user.Usuario" placeholder="Usuario" class="form-control" autofocus required>
+                </div>
+                <p>
+                    <span *ngIf="!Usuario.valid && Usuario.touched">
+                        EL Usuario es Requerido
+                    </span>
+                </p>
+                <div class="form-group">
+                    <input type="text" name="Direccion" #Direccion="ngModel" [(ngModel)]="user.Direccion" placeholder="Direccion" class="form-control" autofocus required>
+                </div>
+                <p>
+                    <span *ngIf="!Direccion.valid && Direccion.touched">
+                        La Direccion es Requerida
+                    </span>
+                </p>
+                <div class="form-group">
+                    <input type="number" name="Telefono" #Telefono="ngModel" [(ngModel)]="user.Telefono" placeholder="Telefono" class="form-control" autofocus required>
+                </div>
+                <p>
+                    <span *ngIf="!Telefono.valid && Telefono.touched">
+                        EL Telefono es Requerido
+                    </span>
+                </p>
+                
+                <div class="form-group">
+                    <input type="password" minlength="6" name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="Contraseña" class="form-control" autofocus required>
+                </div>  
+                <p>
+                    <span *ngIf="password.hasError('minlength')">
+                        La contraseña debe tener como mínimo 6 caracteres.
+                    </span>
+                <p>
+                    <span *ngIf="!password.valid && password.touched">
+                        La Contraseña es Requerida
+                    </span>
+                </p>
+    <!--
+               <div class="form-group">
+                <select class="form-select" #sexo="ngModel" [(ngModel)]="user.sexo" name="sexo" aria-label="Default select example">
+                    <option selected>Seleccione su sexo</option>
+                    <option value="F">F</option>
+                    <option value="M">M</option>
+                  </select>
+              </div>
+              -->
+              <br>
+              <button class="btn btn-success" >
+                Guardar
+              </button>
+             </form>
+         </div>
+     </div>
+ </div>
